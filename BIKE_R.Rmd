@@ -1,0 +1,52 @@
+---
+title: "Bike Data"
+author: "Peter"
+date: '2022-07-16'
+output:
+  pdf_document: default
+  html_document: default
+---
+
+**Load the dataset**
+```{r echo=FALSE}
+bike_2021_01 <- read.csv("202101-divvy-tripdata.csv")
+bike_2021_02 <- read.csv("202102-divvy-tripdata.csv")
+bike_2021_03 <- read.csv("202103-divvy-tripdata.csv")
+bike_2021_04 <- read.csv("202104-divvy-tripdata.csv")
+bike_2021_05 <- read.csv("202105-divvy-tripdata.csv")
+bike_2021_06 <- read.csv("202106-divvy-tripdata.csv")
+bike_2021_07 <- read.csv("202107-divvy-tripdata.csv")
+bike_2021_08 <- read.csv("202108-divvy-tripdata.csv")
+bike_2021_09 <- read.csv("202109-divvy-tripdata.csv")
+bike_2021_10 <- read.csv("202110-divvy-tripdata.csv")
+bike_2021_11 <- read.csv("202111-divvy-tripdata.csv")
+bike_2021_12 <- read.csv("202112-divvy-tripdata.csv")
+```
+
+**Combine all 12 months datasets into 1 dataset**
+```{r}
+bike_2021 <- rbind(bike_2021_01, bike_2021_02, bike_2021_03, bike_2021_04,
+              bike_2021_05, bike_2021_06, bike_2021_07, bike_2021_08,
+              bike_2021_09, bike_2021_10, bike_2021_11, bike_2021_12)
+```
+
+**Have a look at new dataset**
+```{r}
+glimpse(bike_2021)
+head(bike_2021)
+summary(bike_2021)
+```
+
+**Create sample from new dataset**
+```{r}
+set.seed(899)
+bike_subset_2021 <- bike_2021 %>%
+  sample_n(16592)
+```
+
+**Create CSV file to be analyzed at Excel**
+```{r}
+write.csv(bike_subset_2021, "bike_subset_2021.csv")
+```
+
+#THE END 
